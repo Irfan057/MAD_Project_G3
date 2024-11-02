@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background of the border -->
+    <item>
+        <shape>
+            <solid android:color="@android:color/transparent"/> <!-- Transparent background -->
+            <corners android:radius="0dp"/> <!-- No rounded corners -->
+        </shape>
+    </item>
+
+    <!-- Actual border -->
+    <item android:right="1dp" android:left="1dp" android:top="1dp">
+        <shape>
+            <solid android:color="#b7e2f3"/> <!-- Transparent background -->
+            <stroke
+                android:width="3dp"
+            android:color="#000000"/> <!-- Black border color -->
+        </shape>
+    </item>
+</layer-list>
