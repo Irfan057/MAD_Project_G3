@@ -10,10 +10,11 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="418dp"
+        android:layout_height="86dp"
         android:background="#c3e7f5"
         android:minHeight="?attr/actionBarSize"
+        android:rotationX="28"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,22 +22,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <ImageButton
-        android:id="@+id/homeBtn"
-        android:layout_width="64dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="136dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/home" />
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar2"
+        android:layout_width="67dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#5AC3E7F5"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/SearchBtn"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginBottom="12dp"
         android:background="#00FFFFFF"
         android:contentDescription="search"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +50,8 @@
         android:id="@+id/notificationBtn"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
         android:contentDescription="notification"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,52 +62,41 @@
         android:id="@+id/userBtn"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginEnd="116dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:background="#00FFFFFF"
         android:contentDescription="user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/userprofile" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="86dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="460dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.11"
+    <ImageButton
+        android:id="@+id/locationBtn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="16dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="location"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uvprotection" />
+        app:srcCompat="@drawable/location"
+        tools:ignore="HardcodedText" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="121dp"
-        android:layout_height="114dp"
-        android:layout_marginTop="116dp"
+    <ImageButton
+        android:id="@+id/homeBtn"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="home"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cloudy" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="97dp"
-        android:layout_height="84dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.708"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/uv1"
-        tools:layout_editor_absoluteY="460dp" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="97dp"
-        android:layout_height="84dp"
-        app:srcCompat="@drawable/protection"
-        tools:layout_editor_absoluteX="298dp"
-        tools:layout_editor_absoluteY="460dp" />
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@drawable/ultraviolet"
+        tools:ignore="HardcodedText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
