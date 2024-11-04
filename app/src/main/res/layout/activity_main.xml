@@ -124,7 +124,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/uvindexnum"
         android:layout_width="197dp"
         android:layout_height="40dp"
         android:layout_marginTop="236dp"
@@ -146,7 +146,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/weatherimage"
         android:layout_width="121dp"
         android:layout_height="115dp"
         android:layout_marginTop="112dp"
@@ -156,7 +156,7 @@
         app:srcCompat="@drawable/cloudy" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/uvIndexText"
         android:layout_width="259dp"
         android:layout_height="46dp"
         android:layout_marginTop="284dp"
