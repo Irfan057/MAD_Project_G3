@@ -65,6 +65,34 @@
     <androidx.cardview.widget.CardView
         android:layout_width="393dp"
         android:layout_height="143dp"
+        android:layout_marginTop="436dp"
+        app:cardBackgroundColor="#7ab9d4"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/time5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/lato"
+            android:gravity="top|left"
+            android:paddingLeft="9dp"
+            android:paddingTop="5dp"
+            android:text="My Skin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="393dp"
+        android:layout_height="143dp"
         android:layout_marginTop="228dp"
         app:cardBackgroundColor="#7ab9d4"
         app:cardCornerRadius="25dp"
@@ -88,7 +116,6 @@
             android:textSize="20sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
