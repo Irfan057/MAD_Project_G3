@@ -46,7 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_myprofile"
         android:layout_width="191dp"
         android:layout_height="52dp"
         android:layout_marginTop="4dp"
@@ -63,26 +63,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="393dp"
-        android:layout_height="143dp"
-        android:layout_marginTop="436dp"
+        android:layout_width="373dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="352dp"
         app:cardBackgroundColor="#7ab9d4"
         app:cardCornerRadius="25dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/time5"
+            android:id="@+id/tv_daily_uvgoal"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:fontFamily="@font/lato"
             android:gravity="top|left"
             android:paddingLeft="9dp"
             android:paddingTop="5dp"
-            android:text="My Skin"
+            android:text="Daily UV Protection Goal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
@@ -91,30 +92,89 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="393dp"
-        android:layout_height="143dp"
-        android:layout_marginTop="228dp"
+        android:layout_width="373dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="236dp"
         app:cardBackgroundColor="#7ab9d4"
         app:cardCornerRadius="25dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/time5"
+            android:id="@+id/outdoor_al"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:fontFamily="@font/lato"
             android:gravity="top|left"
             android:paddingLeft="9dp"
             android:paddingTop="5dp"
-            android:text="My Skin"
+            android:text="Outdoor Activity Level"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="373dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="464dp"
+        app:cardBackgroundColor="#7ab9d4"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/skin_type"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/lato"
+            android:gravity="top|left"
+            android:paddingLeft="9dp"
+            android:paddingTop="5dp"
+            android:text="Skin Type"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="373dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="584dp"
+        app:cardBackgroundColor="#7ab9d4"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/tv_sunscreen_reco"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:fontFamily="@font/lato"
+            android:gravity="top|left"
+            android:paddingLeft="9dp"
+            android:paddingTop="5dp"
+            android:text="SunScreen Recommendation"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </androidx.cardview.widget.CardView>
 
 
