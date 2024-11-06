@@ -78,8 +78,10 @@
             android:orientation="vertical" >
 
             <androidx.cardview.widget.CardView
-                android:layout_width="373dp"
-                android:layout_height="98dp"
+                android:layout_width="match_parent"
+                android:layout_height="126dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 app:cardBackgroundColor="#7ab9d4"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -103,8 +105,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="373dp"
-                android:layout_height="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="116dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 app:cardBackgroundColor="#7ab9d4"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -126,8 +130,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="373dp"
-                android:layout_height="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 app:cardBackgroundColor="#7ab9d4"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -150,8 +156,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="373dp"
-                android:layout_height="90dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
                 app:cardBackgroundColor="#7ab9d4"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -159,8 +167,8 @@
 
                 <TextView
                     android:id="@+id/tv_sunscreen_reco"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
+                    android:layout_width="423dp"
+                    android:layout_height="118dp"
                     android:fontFamily="@font/lato"
                     android:gravity="top|left"
                     android:paddingLeft="9dp"
