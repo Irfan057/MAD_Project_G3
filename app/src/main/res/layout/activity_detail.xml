@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_page"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Space at the top -->
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+    <!-- Project Name -->
+    <TextView
+        android:id="@+id/projectNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:fontFamily="@font/raleway_medium"
+        android:padding="12dp"
+        android:paddingBottom="8dp"
+        android:text="Greenpeace Malaysia"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <!-- Space between elements -->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <!-- Project Image -->
+    <ImageView
+        android:id="@+id/projectImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/greenpeace_foreground"
+        />
+
+    <!-- Project Description -->
+    <TextView
+        android:id="@+id/projectDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/raleway_medium"
+        android:lineSpacingExtra="4dp"
+        android:text="Greenpeace Malaysia focuses on raising awareness and driving action for climate change, renewable energy, and environmental conservation."
+        android:textAlignment="center"
+        android:textColor="#E0E0E0"
+        android:textSize="16sp" />
+
+    <!-- Call to Action -->
+
+    <!-- Button Section -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/moreInfoButton"
+            android:layout_width="240dp"
+            android:layout_height="59dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="#FFD12E"
+            android:fontFamily="@font/raleway_medium"
+            android:padding="12dp"
+            android:text="More Info"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

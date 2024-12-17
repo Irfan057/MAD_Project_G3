@@ -11,7 +11,7 @@
     <!-- Actual border -->
     <item android:right="1dp" android:left="1dp" android:top="1dp">
         <shape>
-            <solid android:color="#b7e2f3"/> <!-- Transparent background -->
+            <solid android:color="#0e2357"/> <!-- Transparent background -->
             <stroke
                 android:width="3dp"
             android:color="#000000"/> <!-- Black border color -->
