@@ -10,68 +10,45 @@
     tools:ignore="ExtraText">
 
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#00FFFFFF"
-        android:contentDescription="profile_edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023"
-        app:srcCompat="@drawable/user_edit" />
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="172dp"
-        android:layout_height="86dp"
-        android:src="@drawable/city"
-        app:layout_constraintBottom_toTopOf="@+id/time2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.858" />
-
-    <TextView
+    <EditText
         android:id="@+id/time2"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="104dp"
+        android:layout_width="222dp"
+        android:layout_height="60dp"
         android:fontFamily="@font/raleway_medium"
         android:text="Jake"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.245" />
 
-    <TextView
+    <EditText
         android:id="@+id/time3"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="104dp"
+        android:layout_width="222dp"
+        android:layout_height="60dp"
         android:fontFamily="@font/raleway_medium"
         android:text="Kuala Lumpur"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305" />
 
     <TextView
         android:id="@+id/tv_myprofile"
@@ -91,15 +68,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00FFFFFF"
+        android:contentDescription="profile_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/user_edit" />
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="388dp"
         android:layout_height="470dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878">
+        app:layout_constraintVertical_bias="0.938">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,15 +124,18 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
                     android:layout_width="65dp"
                     android:layout_height="65dp"
                     android:layout_gravity="right"
                     android:layout_marginLeft="300dp"
                     android:layout_marginTop="38dp"
                     android:layout_marginRight="30dp"
-                    app:srcCompat="@drawable/work_in_progress" />
+                    android:indeterminateDrawable="@drawable/forprogressbar"
+                    android:outlineAmbientShadowColor="@color/gray" />
 
 
             </androidx.cardview.widget.CardView>
@@ -250,6 +245,17 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="166dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="76dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/city" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
