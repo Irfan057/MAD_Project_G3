@@ -1,5 +1,6 @@
 package com.example.madprojectg3;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ import okhttp3.Response;
 public class homeFragment extends Fragment {
 
     private TextView uvIndexTextView;
+    private TextView uvIndexText;
     private ImageView weatherImageView;
 
     @Override
@@ -35,6 +37,7 @@ public class homeFragment extends Fragment {
 
         // Initialize the TextView and ImageView
         uvIndexTextView = rootView.findViewById(R.id.uvindexnum);
+        uvIndexText = rootView.findViewById(R.id.uvIndexText);
         weatherImageView = rootView.findViewById(R.id.weatherimage);
 
         // Call WeatherAPI when the fragment is created
@@ -45,7 +48,7 @@ public class homeFragment extends Fragment {
 
     // Method to call WeatherAPI
     private void callWeatherApi() {
-        String apiKey = "547cc9fb080b45a7a0055516241912";
+        String apiKey = "547cc9fb080b45a7a0055516241912s";
         double latitude = 3.1667;
         double longitude = 101.7;
 
@@ -86,6 +89,7 @@ public class homeFragment extends Fragment {
                                 Glide.with(requireContext())
                                         .load(weatherIconUrl)
                                         .into(weatherImageView);
+                                updateUvIndexText(uvIndex); // Call method to update UV index text
                             });
                         }
                     } catch (JSONException e) {
@@ -102,5 +106,28 @@ public class homeFragment extends Fragment {
                 }
             }
         });
+    }
+
+    // Method to update the UV index description and color
+    private void updateUvIndexText(double uvIndex) {
+        if (uvIndex >= 0 && uvIndex <= 2) {
+            uvIndexText.setText("Low UV Index");
+            uvIndexText.setTextColor(Color.parseColor("#00FF00")); // Green
+        } else if (uvIndex >= 3 && uvIndex <= 5) {
+            uvIndexText.setText("Moderate UV Index");
+            uvIndexText.setTextColor(Color.parseColor("#FFFF00")); // Yellow
+        } else if (uvIndex >= 6 && uvIndex <= 7) {
+            uvIndexText.setText("High UV Index");
+            uvIndexText.setTextColor(Color.parseColor("#FFA500")); // Orange
+        } else if (uvIndex >= 8 && uvIndex <= 10) {
+            uvIndexText.setText("Very High UV Index");
+            uvIndexText.setTextColor(Color.parseColor("#FF0000")); // Red
+        } else if (uvIndex >= 11) {
+            uvIndexText.setText("Extreme UV Index");
+            uvIndexText.setTextColor(Color.parseColor("#800080")); // Purple
+        } else {
+            uvIndexText.setText("Unknown UV Index");
+            uvIndexText.setTextColor(Color.GRAY);
+        }
     }
 }
