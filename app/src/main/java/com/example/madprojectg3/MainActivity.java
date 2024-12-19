@@ -3,10 +3,15 @@ package com.example.madprojectg3;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+
 public class MainActivity extends AppCompatActivity {
+
+
+
 
     private Fragment homeFragment;
     private Fragment userFragment;

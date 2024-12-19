@@ -1,64 +1,106 @@
 package com.example.madprojectg3;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link homeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.fragment.app.Fragment;
+
+import com.bumptech.glide.Glide;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class homeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public homeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment homeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static homeFragment newInstance(String param1, String param2) {
-        homeFragment fragment = new homeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private TextView uvIndexTextView;
+    private ImageView weatherImageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        // Initialize the TextView and ImageView
+        uvIndexTextView = rootView.findViewById(R.id.uvindexnum);
+        weatherImageView = rootView.findViewById(R.id.weatherimage);
+
+        // Call WeatherAPI when the fragment is created
+        callWeatherApi();
+
+        return rootView;
+    }
+
+    // Method to call WeatherAPI
+    private void callWeatherApi() {
+        String apiKey = "547cc9fb080b45a7a0055516241912";
+        double latitude = 3.1667;
+        double longitude = 101.7;
+
+        // Construct the URL to get current weather data
+        String url = "https://api.weatherapi.com/v1/current.json?key=" + apiKey + "&q=Kuala Lumpur";
+
+        // Create OkHttp client and request
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+
+        // Make the API call asynchronously
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("WeatherApi", "Error: " + e.getMessage());
+                if (getActivity() != null) {
+                    getActivity().runOnUiThread(() -> uvIndexTextView.setText("Error fetching data"));
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        String responseBody = response.body().string();
+                        Log.d("WeatherApi", "Response: " + responseBody);
+
+                        // Parse the response to get UV index and weather icon
+                        JSONObject jsonResponse = new JSONObject(responseBody);
+                        JSONObject current = jsonResponse.getJSONObject("current");
+                        double uvIndex = current.getDouble("uv");
+                        String weatherIconUrl = "https:" + current.getJSONObject("condition").getString("icon");
+
+                        // Update the UI with the UV index and weather icon
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> {
+                                uvIndexTextView.setText("UVI: " + uvIndex);
+                                Glide.with(requireContext())
+                                        .load(weatherIconUrl)
+                                        .into(weatherImageView);
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        if (getActivity() != null) {
+                            getActivity().runOnUiThread(() -> uvIndexTextView.setText("Error parsing data"));
+                        }
+                    }
+                } else {
+                    Log.e("WeatherApi", "Response error: " + response.message());
+                    if (getActivity() != null) {
+                        getActivity().runOnUiThread(() -> uvIndexTextView.setText("Error fetching data"));
+                    }
+                }
+            }
+        });
     }
 }
