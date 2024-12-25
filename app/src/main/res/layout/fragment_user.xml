@@ -10,7 +10,7 @@
     tools:ignore="ExtraText">
 
 
-    <EditText
+    <TextView
         android:id="@+id/time2"
         android:layout_width="222dp"
         android:layout_height="60dp"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#00FFFFFF"
@@ -94,6 +94,7 @@
         app:layout_constraintVertical_bias="0.938">
 
         <LinearLayout
+            android:id="@+id/user_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -167,6 +168,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/skintype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="300dp"
