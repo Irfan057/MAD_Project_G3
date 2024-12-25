@@ -1,5 +1,6 @@
 package com.example.madprojectg3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+    int transition_id;
     private Fragment homeFragment;
     private Fragment userFragment;
 
@@ -39,12 +40,19 @@ public class MainActivity extends AppCompatActivity {
         ImageButton searchBtn = findViewById(R.id.searchBtn);
         ImageButton donationBtn = findViewById(R.id.donationBtn);
         ImageButton actionHubBtn = findViewById(R.id.actionhubBtn);
-
+        Intent intent = getIntent();
+        transition_id = intent.getIntExtra("transition_id",0);
         // Show the home fragment by default
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainerView, homeFragment)
-                    .commit();
+            if(transition_id == 0) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, homeFragment)
+                        .commit();
+            }else if(transition_id == 1){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, infositeFragment)
+                        .commit();
+            }
         }
 
         // Set listeners for buttons
