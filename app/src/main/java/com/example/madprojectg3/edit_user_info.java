@@ -12,17 +12,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class edit_user_info extends Fragment {
 
-    private FirebaseAuth auth;
     private DatabaseReference userRef;
 
     private EditText usernameField;
@@ -39,78 +33,45 @@ public class edit_user_info extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_user_info, container, false);
 
-        String userId = getArguments().getString("userId");
+        Bundle args = getArguments();
+        if (args != null) {
+            String userId = args.getString("userId");
+            if (userId != null) {
+                userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
 
-        userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                usernameField = view.findViewById(R.id.edit_username_sg);
+                phoneField = view.findViewById(R.id.phonenum_sg);
+                emailField = view.findViewById(R.id.edit_email_sg);
+                passwordField = view.findViewById(R.id.edit_TextTextPassword);
+                confirmPasswordField = view.findViewById(R.id.edit_TextTextPassword2);
+                Button submitButton = view.findViewById(R.id.edit_submitBtn);
 
-        // Link UI components
-        usernameField = view.findViewById(R.id.edit_username_sg);
-        phoneField = view.findViewById(R.id.phonenum_sg);
-        emailField = view.findViewById(R.id.edit_email_sg);
-        passwordField = view.findViewById(R.id.edit_TextTextPassword);
-        confirmPasswordField = view.findViewById(R.id.edit_TextTextPassword2);
-        Button submitButton = view.findViewById(R.id.edit_submitBtn);
-
-        loadUserDetails();
-
-        submitButton.setOnClickListener(v -> updateUserDetails(userId));
+                submitButton.setOnClickListener(v -> updateUserDetails(userId));
+            } else {
+                Toast.makeText(getContext(), "Error: User ID is missing", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Error: No arguments received", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
-    }
-
-    private void loadUserDetails() {
-        // Fetch user details from the database
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String username = snapshot.child("username").getValue(String.class);
-                    String phone = snapshot.child("phone").getValue(String.class);
-                    String email = snapshot.child("email").getValue(String.class);
-
-                    // Populate the EditText fields with the retrieved data
-                    usernameField.setText(username);
-                    phoneField.setText(phone);
-                    emailField.setText(email);
-                } else {
-                    Toast.makeText(getContext(), "User details not found.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to load user details: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void updateUserDetails(String userId) {
         String updatedUsername = usernameField.getText().toString().trim();
         String updatedPhone = phoneField.getText().toString().trim();
         String updatedEmail = emailField.getText().toString().trim();
-        String updatedPassword = passwordField.getText().toString().trim();
-        String confirmPassword = confirmPasswordField.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(updatedPassword) && updatedPassword.equals(confirmPassword)) {
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            FirebaseUser user = auth.getCurrentUser();
-            if (user != null) {
-                user.updatePassword(updatedPassword)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Password updated successfully.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getContext(), "Failed to update password: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+        if (!TextUtils.isEmpty(updatedUsername)) {
+            userRef.child("username").setValue(updatedUsername);
+        }
+        if (!TextUtils.isEmpty(updatedPhone)) {
+            userRef.child("phone").setValue(updatedPhone);
+        }
+        if (!TextUtils.isEmpty(updatedEmail)) {
+            userRef.child("email").setValue(updatedEmail);
         }
 
-        // Update user details in the database
-        userRef.child("username").setValue(updatedUsername);
-        userRef.child("phone").setValue(updatedPhone);
-        userRef.child("email").setValue(updatedEmail)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getContext(), "Details updated successfully.", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(getContext(), "Failed to update details: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        Toast.makeText(getContext(), "Details updated successfully", Toast.LENGTH_SHORT).show();
     }
 }

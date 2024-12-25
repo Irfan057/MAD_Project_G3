@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         userFragment = new userFragment();
         userFragment.setArguments(args);
+
         homeFragment = new homeFragment();
         infositeFragment = new infositeFragment();
         donationFragment = new donationFragment();
