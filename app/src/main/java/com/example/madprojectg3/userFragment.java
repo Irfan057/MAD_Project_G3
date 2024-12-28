@@ -106,18 +106,29 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap map) {
         googleMap = map;
 
-        // Customize map settings
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
-        googleMap.getUiSettings().setCompassEnabled(true);
+        try {
+            // Customize map settings
+            googleMap.getUiSettings().setZoomControlsEnabled(true);
+            googleMap.getUiSettings().setCompassEnabled(true);
 
-        // Move camera to Kuala Lumpur
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(KUALA_LUMPUR, DEFAULT_ZOOM));
+            // Move camera to Kuala Lumpur with animation
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(KUALA_LUMPUR, DEFAULT_ZOOM));
 
-        // Add a marker for Kuala Lumpur
-        googleMap.addMarker(new MarkerOptions()
-                .position(KUALA_LUMPUR)
-                .title("Kuala Lumpur"));
+            // Add a marker for Kuala Lumpur
+            googleMap.addMarker(new MarkerOptions()
+                    .position(KUALA_LUMPUR)
+                    .title("Kuala Lumpur"));
+
+            // Optional: Enable my location button if you have location permissions
+            if (ContextCompat.checkSelfPermission(requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                googleMap.setMyLocationEnabled(true);
+            }
+        } catch (Exception e) {
+            Log.e("MapError", "Error setting up map: " + e.getMessage());
+        }
     }
+
 
     // Lifecycle methods for MapView
     @Override
