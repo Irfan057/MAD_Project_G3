@@ -40,6 +40,8 @@ import okhttp3.Response;
 
 public class homeFragment extends Fragment {
 
+
+    private TextView sunscreenAlert;
     private TextView uvIndexTextView;
     private TextView uvIndexText;
     private TextView alerttxt; // Added for the alert message
@@ -72,7 +74,7 @@ public class homeFragment extends Fragment {
         tempTextView = rootView.findViewById(R.id.tempnum);
         IVAlertSign = rootView.findViewById(R.id.IVAlertSign);
         uvprogressbar = rootView.findViewById(R.id.uvprogressbar);
-
+        sunscreenAlert = rootView.findViewById(R.id.sunscreenalerttxt);
 
         uvPeakNum = rootView.findViewById(R.id.uvpeaknum);
         uvLowNum = rootView.findViewById(R.id.uvlownum);
@@ -301,7 +303,9 @@ public class homeFragment extends Fragment {
                         double currentUv = 0;
                         double nextHourUv = 0;
                         double next3HourMaxUv = 0;
+                        double next3HourMinUv = Double.MAX_VALUE;
                         String maxUvTime = "";
+                        String minUvTime = "";
                         boolean foundCurrent = false;
 
                         // Loop through hourly data
@@ -320,11 +324,15 @@ public class homeFragment extends Fragment {
                             else if (foundCurrent && hour == currentHour + 1) {
                                 nextHourUv = uv;
                             }
-                            // Track maximum UV in next 3 hours
+                            // Track maximum and minimum UV in next 3 hours
                             else if (foundCurrent && hour > currentHour && hour <= currentHour + 3) {
                                 if (uv > next3HourMaxUv) {
                                     next3HourMaxUv = uv;
                                     maxUvTime = time;
+                                }
+                                if (uv < next3HourMinUv) {
+                                    next3HourMinUv = uv;
+                                    minUvTime = time;
                                 }
                             }
                         }
@@ -333,7 +341,9 @@ public class homeFragment extends Fragment {
                         final double finalCurrentUv = currentUv;
                         final double finalNextHourUv = nextHourUv;
                         final double finalNext3HourMaxUv = next3HourMaxUv;
+                        final double finalNext3HourMinUv = next3HourMinUv;
                         final String finalMaxUvTime = maxUvTime;
+                        final String finalMinUvTime = minUvTime;
                         final String finalCurrentTimeStr = currentTimeStr;
 
                         if (getActivity() != null) {
@@ -341,13 +351,18 @@ public class homeFragment extends Fragment {
                                 StringBuilder forecastMessage = new StringBuilder();
 
                                 // Current UV level context with current time
-                                //forecastMessage.append(String.format("Current UV at %s: %.1f. ",
-                                        //formatTo12HourFormat(finalCurrentTimeStr), finalCurrentUv));
+                                forecastMessage.append(String.format("Current UV at %s: %.1f. ",
+                                        formatTo12HourFormat(finalCurrentTimeStr), finalCurrentUv));
 
-                                // Check for significant increases
+                                // Check for significant changes
                                 if (finalNextHourUv > finalCurrentUv + 1) {
                                     // Immediate increase in next hour
                                     forecastMessage.append(String.format("UV index will rise to %.1f in the next hour",
+                                            finalNextHourUv));
+                                }
+                                else if (finalNextHourUv < finalCurrentUv - 1) {
+                                    // Immediate decrease in next hour
+                                    forecastMessage.append(String.format("UV index will drop to %.1f in the next hour",
                                             finalNextHourUv));
                                 }
                                 else if (finalNext3HourMaxUv > finalCurrentUv + 2) {
@@ -355,13 +370,18 @@ public class homeFragment extends Fragment {
                                     forecastMessage.append(String.format("UV index expected to rise to %.1f at %s",
                                             finalNext3HourMaxUv, formatTo12HourFormat(finalMaxUvTime)));
                                 }
+                                else if (finalNext3HourMinUv < finalCurrentUv - 2) {
+                                    // Significant decrease within 3 hours
+                                    forecastMessage.append(String.format("UV levels expected to drop to %.1f at %s",
+                                            finalNext3HourMinUv, formatTo12HourFormat(finalMinUvTime)));
+                                }
                                 else if (finalCurrentUv > 5) {
-                                    // High current UV but no significant increase
+                                    // High current UV but no significant change
                                     forecastMessage.append("UV index remains high. Take precautions.");
                                 }
                                 else {
                                     // No significant changes
-                                    forecastMessage.append("No significant UV increase expected in the next 3 hours");
+                                    forecastMessage.append("No significant UV changes expected in the next 3 hours");
                                 }
 
                                 forecastTxt.setText(forecastMessage.toString());
@@ -432,24 +452,32 @@ public class homeFragment extends Fragment {
         if (uvIndex >= 0 && uvIndex <= 2) {
             uvIndexText.setText("Low UV");
             uvIndexText.setTextColor(Color.parseColor("#00FF00")); // Green
-            //uvIndexTextView.setTextColor(Color.parseColor("#FFFF00"));
+            uvIndexTextView.setTextColor(Color.parseColor("#FFFF00"));
+            sunscreenAlert.setText("SPF 15, Minimal sun protection may be needed");
 
         } else if (uvIndex > 2 && uvIndex <= 5) {
             uvIndexText.setText("Moderate UV");
             uvIndexText.setTextColor(Color.parseColor("#FFFF00")); // Yellow
-            //uvIndexTextView.setTextColor(Color.parseColor("#FFFF00"));
+            uvIndexTextView.setTextColor(Color.parseColor("#FFFF00"));
+            sunscreenAlert.setText("Use at least SPF 15–30. Stay in the shade during midday hours.");
 
         } else if (uvIndex > 5 && uvIndex <= 8) {
             uvIndexText.setText("High UV");
             uvIndexText.setTextColor(Color.parseColor("#FFA500")); // Orange
+            uvIndexTextView.setTextColor(Color.parseColor("#FFA500"));
+            sunscreenAlert.setText("Use at least SPF 30. Wear protective clothing, a hat, and sunglasses.");
 
         } else if (uvIndex > 8 && uvIndex <= 10) {
             uvIndexText.setText("Very High UV");
             uvIndexText.setTextColor(Color.parseColor("#FF0000")); // Red
+            uvIndexTextView.setTextColor(Color.parseColor("#FF0000"));
+            sunscreenAlert.setText("Use at least SPF 50 and seek shade. Reapply sunscreen frequently.");
 
         } else if (uvIndex > 10) {
             uvIndexText.setText("Extreme UV");
             uvIndexText.setTextColor(Color.parseColor("#800080")); // Purple
+            uvIndexTextView.setTextColor(Color.parseColor("#800080"));
+            sunscreenAlert.setText("Maximum precautions are essential. Use SPF 50+ and avoid the sun during peak hours.");
 
         } else {
             uvIndexText.setText("Unknown UV Index");
@@ -517,8 +545,8 @@ public class homeFragment extends Fragment {
 
 
     private void updateUvProgress(int uvIndex) {
-        // If UV index is 0, set the progress to 1
-        int progress = (uvIndex == 0) ? 1 : (int) ((uvIndex / 11.0) * 100);  // Ensure the minimum progress is 2
+
+        int progress = uvIndex;
 
         // Set the progress of the ProgressBar
         uvprogressbar.setProgress(progress);

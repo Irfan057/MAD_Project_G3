@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgrounduvblur2"
+    android:background="@drawable/backgrounduvblur"
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
@@ -35,7 +35,7 @@
         android:id="@+id/uvindexnum"
         android:layout_width="175dp"
         android:layout_height="175dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="88dp"
         android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
         android:paddingTop="30dp"
@@ -52,7 +52,7 @@
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,38 +67,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cloudy" />
 
+
     <TextView
         android:id="@+id/uvIndexText"
-        android:layout_width="395dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="300dp"
+        android:layout_width="309dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="312dp"
+        android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
+        android:paddingTop="3dp"
         android:shadowColor="#000000"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="14"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1"
         android:text="High UV Index"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#D36C28"
         android:textColorLink="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/tempnum"
         android:layout_width="176dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="260dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="264dp"
         android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         android:shadowColor="#000000"
         android:shadowDx="1"
         android:shadowDy="1"
@@ -108,7 +109,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -395,7 +396,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TVAlertCV"
+                    android:id="@+id/TVUVAlert"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato"
@@ -445,16 +446,18 @@
                      />
 
                 <TextView
-                    android:layout_width="213dp"
+                    android:id="@+id/TVHourlyForecast"
+                    android:layout_width="300dp"
                     android:layout_height="41dp"
-                    android:fontFamily="@font/raleway"
+                    android:fallbackLineSpacing="true"
+                    android:fontFamily="@font/lato"
                     android:gravity="center"
-                    android:paddingRight="45dp"
-                    android:text="Forecast:"
+                    android:paddingTop="3dp"
+                    android:paddingRight="17dp"
+                    android:text="Hourly Forecast:"
                     android:textColor="#FF0000"
-                    android:textSize="34sp"
                     android:textFontWeight="700"
-                     />
+                    android:textSize="34sp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -468,29 +471,30 @@
                 app:cardElevation="4dp">
 
                 <TextView
-                    android:id="@+id/historytxt"
+                    android:id="@+id/sunscreenalerttxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato"
                     android:paddingVertical="60dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="30dp"
-                    android:text="History will appear here. History will appear herer. History will appear herer"
+                    android:text="Sunscreen SPF will appear here. Sunscreen SPF will appear here. Sunscreen SPF will appear here."
                     android:textAlignment="viewStart"
                     android:textColor="#ffeb3b"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="213dp"
+                    android:id="@+id/TVSunscreen"
+                    android:layout_width="270dp"
                     android:layout_height="50dp"
-                    android:fontFamily="@font/raleway"
+                    android:fontFamily="@font/lato"
                     android:gravity="center"
-                    android:paddingRight="65dp"
-                    android:text="History:"
+                    android:paddingRight="75dp"
+                    android:text="Sunscreen"
                     android:textColor="#FFFFFF"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
+                    android:textFontWeight="700"
+                    android:textSize="34sp" />
 
             </androidx.cardview.widget.CardView>
 
@@ -505,31 +509,31 @@
         android:id="@+id/uvprogressbar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="176dp"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_marginStart="3dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="9dp"
         android:background="@drawable/rounded_bg"
-        android:max="11"
+        android:max="12"
         android:progress="0"
         android:progressTint="#2196F3"
         app:layout_constraintBottom_toTopOf="@+id/uvIndexText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tempnum"
         app:layout_constraintTop_toBottomOf="@+id/uvindexnum"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvtimepeak"
-        android:layout_width="58dp"
-        android:layout_height="22dp"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="176dp"
+        android:layout_marginEnd="168dp"
         android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
-        android:paddingTop="3dp"
+        android:paddingTop="5dp"
         android:shadowColor="#000000"
         android:text="12:00 AM"
         android:textAlignment="center"
@@ -544,15 +548,15 @@
 
     <TextView
         android:id="@+id/tvtimeavg"
-        android:layout_width="58dp"
-        android:layout_height="22dp"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
-        android:paddingTop="3dp"
+        android:paddingTop="5dp"
         android:shadowColor="#000000"
-        android:text="19:00"
+        android:text="6:00 PM"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -565,13 +569,13 @@
 
     <TextView
         android:id="@+id/tvtimelow"
-        android:layout_width="58dp"
-        android:layout_height="22dp"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
-        android:paddingTop="3dp"
+        android:paddingTop="5dp"
         android:shadowColor="#000000"
         android:text="21:00"
         android:textAlignment="center"
