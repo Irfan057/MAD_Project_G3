@@ -38,7 +38,8 @@ public class RegisterForm extends AppCompatActivity {
         EditText dobEditText = findViewById(R.id.dob_text_view);
         RadioButton oilyRadioButton = findViewById(R.id.oilyOpt);
         RadioButton dryRadioButton = findViewById(R.id.dryOpt);
-        RadioButton bothRadioButton = findViewById(R.id.bothOpt);
+        RadioButton normalRadioButton = findViewById(R.id.normalOpt);
+        RadioButton sensitiveRadioButton = findViewById(R.id.sensitiveOpt2);
         Button signUpButton = findViewById(R.id.SgnUpBtn);
 
         signUpButton.setOnClickListener(v -> {
@@ -54,9 +55,12 @@ public class RegisterForm extends AppCompatActivity {
                 skinType = "Oily";
             } else if (dryRadioButton.isChecked()) {
                 skinType = "Dry";
-            } else if (bothRadioButton.isChecked()) {
-                skinType = "Both";
+            } else if (normalRadioButton.isChecked()) {
+                skinType = "Normal";
+            }else if (sensitiveRadioButton.isChecked()) {
+                skinType = "Sensitive";
             }
+
 
             if (username.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || dob.isEmpty() || skinType.isEmpty()) {
                 Toast.makeText(RegisterForm.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();

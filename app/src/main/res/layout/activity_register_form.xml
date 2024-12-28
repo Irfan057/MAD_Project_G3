@@ -8,156 +8,200 @@
     android:background="@drawable/bg_page"
     tools:context=".RegisterForm">
 
+    <!-- Background Image -->
     <ImageView
         android:id="@+id/bg_SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/bggg" />
 
+    <!-- Title -->
     <TextView
         android:id="@+id/SignUptxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="104dp"
         android:fontFamily="@font/cormorant_sc_semibold"
         android:text="Sign Up Form"
         android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="#FFD12E"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bg_SignUp" />
+        app:layout_constraintVertical_bias="0.1" />
+
+    <!-- Username Field -->
+
+    <!-- Phone Number Field -->
 
     <EditText
         android:id="@+id/username_sg"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="132dp"
         android:hint="Username"
         android:inputType="text"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SignUptxt" />
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SignUptxt" />
 
+    <!-- Email Field -->
     <EditText
         android:id="@+id/phonenum_sg"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:hint="Phone Number"
-        android:inputType="text"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_sg" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username_sg" />
 
+    <!-- Password Field -->
     <EditText
         android:id="@+id/email_sg"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:hint="Email"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phonenum_sg" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phonenum_sg" />
+
+    <!-- Confirm Password Field -->
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_sg" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_sg" />
+
+    <!-- Date of Birth Field -->
 
     <EditText
         android:id="@+id/editTextTextPassword2"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:ems="10"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="12dp"
         android:hint="Confirm Password"
         android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPassword" />
 
+    <!-- Skin Type Text -->
     <EditText
         android:id="@+id/dob_text_view"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="44dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:hint="DD/MM/YYYY"
+        android:inputType="date"
         android:padding="12dp"
-        android:textAlignment="viewStart"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextTextPassword2" />
 
-    <RadioButton
-        android:id="@+id/oilyOpt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:text="Oily"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/skinTypetxt"
-        app:layout_constraintTop_toBottomOf="@+id/dob_text_view"
-        app:layout_constraintVertical_bias="0.0" />
+    <!-- Skin Type Radio Buttons -->
 
-    <RadioButton
-        android:id="@+id/dryOpt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Dry"
-        app:layout_constraintBottom_toTopOf="@+id/SgnUpBtn"
-        app:layout_constraintStart_toEndOf="@+id/oilyOpt"
-        app:layout_constraintTop_toBottomOf="@+id/dob_text_view"
-        app:layout_constraintVertical_bias="0.461" />
-
-    <RadioButton
-        android:id="@+id/bothOpt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="12dp"
-        android:text="Both"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/dryOpt"
-        app:layout_constraintTop_toBottomOf="@+id/dob_text_view" />
+    <!-- Sign Up Button -->
 
     <TextView
         android:id="@+id/skinTypetxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="136dp"
-        android:text="Skin Type : "
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:text="Skin Type:"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dob_text_view" />
+
+    <RadioButton
+        android:id="@+id/oilyOpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:text="Oily"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/skinTypetxt"
+        app:layout_constraintTop_toBottomOf="@id/dob_text_view" />
+
+    <RadioButton
+        android:id="@+id/sensitiveOpt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:text="Sensitive"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/skinTypetxt"
+        app:layout_constraintTop_toBottomOf="@id/dob_text_view" />
+
+    <RadioButton
+        android:id="@+id/dryOpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Dry"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/oilyOpt"
+        app:layout_constraintTop_toBottomOf="@id/dob_text_view" />
+
+    <RadioButton
+        android:id="@+id/normalOpt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:text="Normal"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/dryOpt"
+        app:layout_constraintTop_toBottomOf="@id/dob_text_view" />
 
     <Button
         android:id="@+id/SgnUpBtn"
-        android:layout_width="194dp"
-        android:layout_height="58dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="80dp"
         android:backgroundTint="#FFD12E"
-        android:fontFamily="@font/raleway_semibold"
         android:text="SIGN UP"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/skinTypetxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
