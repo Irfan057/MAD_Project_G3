@@ -588,5 +588,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CVright" />
 
+    <ImageButton
+        android:id="@+id/refresh"
+        android:layout_width="46dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="#00FFFFFF"
+        android:alpha="0.2"
+        android:contentDescription="refresh button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reload" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

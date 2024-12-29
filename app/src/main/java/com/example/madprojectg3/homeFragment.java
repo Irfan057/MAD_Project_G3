@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+
+import android.annotation.SuppressLint;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,9 +20,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +38,11 @@ import java.time.format.DateTimeParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -40,11 +52,15 @@ import okhttp3.Response;
 
 public class homeFragment extends Fragment {
 
+    private static final String CHANNEL_ID = "refresh_channel";
+    private static final int NOTIFICATION_ID = 1;
+    private TextView alerttxt;
+
 
     private TextView sunscreenAlert;
     private TextView uvIndexTextView;
     private TextView uvIndexText;
-    private TextView alerttxt; // Added for the alert message
+    //private TextView alerttxt; // Added for the alert message
     private ImageView weatherImageView;
 
     private TextView tempTextView;
@@ -66,7 +82,17 @@ public class homeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        createNotificationChannel();
+
+
         // Initialize the TextViews and ImageView
+        ImageButton refreshButton = rootView.findViewById(R.id.refresh);
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNotification();
+            }
+        });
         uvIndexTextView = rootView.findViewById(R.id.uvindexnum);
         uvIndexText = rootView.findViewById(R.id.uvIndexText);
         alerttxt = rootView.findViewById(R.id.alerttxt); // Initialize the alert TextView
@@ -90,6 +116,45 @@ public class homeFragment extends Fragment {
 
         return rootView;
     }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Refresh Channel";
+            String description = "Channel for refresh notifications";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = requireContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void showNotification() {
+
+        String alertMessage = forecastTxt.getText().toString();
+        // Create an intent that opens your app when notification is tapped
+        Intent intent = new Intent(requireContext(), requireActivity().getClass());
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent,
+                PendingIntent.FLAG_IMMUTABLE);
+
+        // Build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+                .setSmallIcon(R.drawable.refresh) // Make sure to have this icon in your drawable resources
+                    .setContentTitle("UV Alert!")
+                .setContentText(alertMessage)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent);
+
+        // Show the notification
+        NotificationManager notificationManager = (NotificationManager) requireContext()
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
 
     // Method to call WeatherAPI
     private void callWeatherApi() {
@@ -567,6 +632,10 @@ public class homeFragment extends Fragment {
         Log.d("UV Progress", "UV Index: " + uvIndex + ", Progress: " + progress);
 
     }
+
+
+
+
 
 
 
