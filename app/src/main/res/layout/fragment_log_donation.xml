@@ -1,0 +1,84 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@drawable/background_page">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Page Title -->
+        <TextView
+            android:id="@+id/pageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="95dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Log Your Donation"
+            android:textColor="#FFD12E"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <!-- Donation Icon -->
+        <ImageView
+            android:id="@+id/donationIcon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_donation"
+            android:contentDescription="Donation Icon"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Project Spinner -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Select a Project:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:id="@+id/projectSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Amount Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Enter Donation Amount:"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/amountEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edittext_background"
+            android:fontFamily="@font/raleway_medium"
+            android:hint="Enter amount"
+            android:inputType="numberDecimal" />
+
+        <!-- Donate Button -->
+        <Button
+            android:id="@+id/logDonationButton"
+            android:layout_width="227dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FFD12E"
+            android:fontFamily="@font/raleway_medium"
+            android:text="Log Donation"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -36,19 +36,10 @@
         android:layout_width="match_parent"
         android:layout_height="21dp" />
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- RecyclerView for the Donation Projects -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/donationRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:contentDescription="ScrollView">
-
-        <LinearLayout
-            android:id="@+id/containerLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-        </LinearLayout>
-    </ScrollView>
-
+        android:scrollbars="vertical" />
 </LinearLayout>

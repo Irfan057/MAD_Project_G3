@@ -13,6 +13,8 @@ gson = "2.10.1"
 play-services-location = "21.0.1"
 okhttp = "4.10.0"
 tracingPerfettoHandshake = "1.0.0"
+firebaseFirestore = "25.1.1"
+googleGmsGoogleServices = "4.4.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -28,7 +30,9 @@ okhttp-logging-interceptor = { module = "com.squareup.okhttp3:logging-intercepto
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services-location" }
 tracing-perfetto-handshake = { group = "androidx.tracing", name = "tracing-perfetto-handshake", version.ref = "tracingPerfettoHandshake" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment donationFragment;
     private Fragment actionHubFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
