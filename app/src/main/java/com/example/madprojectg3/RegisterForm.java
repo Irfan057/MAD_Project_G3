@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterForm extends AppCompatActivity {
 
@@ -57,24 +59,40 @@ public class RegisterForm extends AppCompatActivity {
                 skinType = "Dry";
             } else if (normalRadioButton.isChecked()) {
                 skinType = "Normal";
-            }else if (sensitiveRadioButton.isChecked()) {
+            } else if (sensitiveRadioButton.isChecked()) {
                 skinType = "Sensitive";
             }
 
-
+            // Check for empty fields
             if (username.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || dob.isEmpty() || skinType.isEmpty()) {
                 Toast.makeText(RegisterForm.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Check if passwords match
             if (!password.equals(confirmPassword)) {
                 confirmPasswordEditText.setError("Passwords do not match!");
                 confirmPasswordEditText.requestFocus();
                 return;
             }
 
+            // Validate password length and special character
+            if (!isValidPassword(password)) {
+                passwordEditText.setError("Password must be at least 6 characters long and contain at least one special character.");
+                passwordEditText.requestFocus();
+                return;
+            }
+
             checkIfDetailsExist(username, email, phone, password, usernameEditText, phoneEditText, emailEditText, dob, skinType);
         });
+    }
+
+    private boolean isValidPassword(String password) {
+        // Check if password is at least 6 characters long and contains at least one special character
+        String regex = "^(?=.*[!@#$%^&*(),.?\":{}|<>]).{6,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 
     private void checkIfDetailsExist(String username, String email, String phone, String password, EditText usernameEditText, EditText phoneEditText, EditText emailEditText, String dob, String skinType) {

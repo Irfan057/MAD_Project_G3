@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         String username = getIntent().getStringExtra("username");
         String skintype = getIntent().getStringExtra("skintype");
 
+
         Bundle args = new Bundle();
         args.putString("userId", userId);
         args.putString("username", username);
