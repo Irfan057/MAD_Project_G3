@@ -42,14 +42,14 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/FormText" />
 
     <EditText
         android:id="@+id/columnUser"
-        android:layout_width="379dp"
-        android:layout_height="61dp"
+        android:layout_width="342dp"
+        android:layout_height="54dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="20dp"
         android:hint="Enter username"
@@ -71,14 +71,14 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.116"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/columnUser" />
 
     <EditText
         android:id="@+id/TextPassword"
-        android:layout_width="379dp"
-        android:layout_height="61dp"
+        android:layout_width="342dp"
+        android:layout_height="54dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="12dp"
         android:hint="Enter password"
@@ -117,8 +117,8 @@
 
     <Button
         android:id="@+id/LoginBtnF"
-        android:layout_width="370dp"
-        android:layout_height="59dp"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="64dp"
         android:backgroundTint="#FFD12E"
@@ -145,18 +145,18 @@
 
     <Button
         android:id="@+id/signupbtn"
-        android:layout_width="370dp"
-        android:layout_height="59dp"
+        android:layout_width="344dp"
+        android:layout_height="63dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#FFD12E"
         android:fontFamily="@font/raleway_semibold"
         android:text="Sign Up"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/alert"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alert" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

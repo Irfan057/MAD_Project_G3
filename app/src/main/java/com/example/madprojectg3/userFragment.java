@@ -85,6 +85,7 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+
         ImageButton logoutBtn = view.findViewById(R.id.logoutBtn);
         logoutBtn.setOnClickListener(v -> handleLogout());
 
@@ -149,10 +150,13 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onResume() {
         super.onResume();
+        refreshUsername();
         mapView.onResume(); // Resume the MapView
         if (fusedLocationProviderClient != null && locationCallback != null) {
             startLocationUpdates(); // Start location updates
         }
+
+
     }
 
     @Override
@@ -178,6 +182,27 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+    private void refreshUsername() {
+        // Check if arguments are passed (e.g., from navigation)
+        Bundle args = getArguments();
+        if (args != null) {
+            String username = args.getString("username");
+            if (username != null && !username.isEmpty()) {
+                usernameTextView.setText(username);
+                return; // If username found in arguments, update and exit
+            }
+        }
+
+        // If no arguments, fetch username from SharedPreferences
+        android.content.SharedPreferences sharedPreferences = requireContext()
+                .getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "N/A");
+
+        // Set the username to the TextView
+        usernameTextView.setText(username);
+    }
+
 
     private void setupLocationRequest() {
         locationRequest = LocationRequest.create()

@@ -57,21 +57,59 @@ public class edit_user_info extends Fragment {
         return view;
     }
 
+
+
     private void updateUserDetails(String userId) {
         String updatedUsername = usernameField.getText().toString().trim();
         String updatedPhone = phoneField.getText().toString().trim();
         String updatedEmail = emailField.getText().toString().trim();
+        String updatedPassword = passwordField.getText().toString().trim();
+        String confirmPassword = confirmPasswordField.getText().toString().trim();
 
+        boolean isUpdated = false;
+
+        // Update username if it's not empty
         if (!TextUtils.isEmpty(updatedUsername)) {
             userRef.child("username").setValue(updatedUsername);
-        }
-        if (!TextUtils.isEmpty(updatedPhone)) {
-            userRef.child("phone").setValue(updatedPhone);
-        }
-        if (!TextUtils.isEmpty(updatedEmail)) {
-            userRef.child("email").setValue(updatedEmail);
+
+            // Save username to SharedPreferences
+            android.content.SharedPreferences sharedPreferences = requireContext()
+                    .getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE);
+            sharedPreferences.edit().putString("username", updatedUsername).apply();
+
+            isUpdated = true;
         }
 
-        Toast.makeText(getContext(), "Details updated successfully", Toast.LENGTH_SHORT).show();
+
+        // Update phone if it's not empty
+        if (!TextUtils.isEmpty(updatedPhone)) {
+            userRef.child("phone").setValue(updatedPhone);
+            isUpdated = true;
+        }
+
+        // Update email if it's not empty
+        if (!TextUtils.isEmpty(updatedEmail)) {
+            userRef.child("email").setValue(updatedEmail);
+            isUpdated = true;
+        }
+
+        // Validate and update password if both fields are filled and passwords match
+        if (!TextUtils.isEmpty(updatedPassword)) {
+            if (updatedPassword.equals(confirmPassword)) {
+                userRef.child("password").setValue(updatedPassword);
+                isUpdated = true;
+            } else {
+                Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        // Show appropriate message based on the update status
+        if (isUpdated) {
+            Toast.makeText(getContext(), "User Details Updated Successfully", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "No changes made to the details", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }
