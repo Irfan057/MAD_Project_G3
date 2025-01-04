@@ -37,16 +37,17 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation("com.github.bumptech.glide:glide:4.11.0")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
-   
+
+
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
 
     implementation("com.google.code.gson:gson:2.8.8")
 
 
-    implementation ("com.github.bumptech.glide:glide:4.15.1") //For Glide
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.play.services.maps)
+    implementation(libs.legacy.support.v4) //For Glide
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
 
     // Other dependencies
