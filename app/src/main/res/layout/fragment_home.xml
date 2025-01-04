@@ -5,18 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundpageuv"
+    android:background="@drawable/backgrounduvblur"
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="405dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
+        android:id="@+id/locationTV"
+        android:layout_width="372dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
         android:fontFamily="@font/lato"
+        android:shadowColor="#000000"
+        android:shadowDx="10"
+        android:shadowDy="10"
         android:text="Kuala Lumpur"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -30,11 +33,12 @@
 
     <TextView
         android:id="@+id/uvindexnum"
-        android:layout_width="249dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="288dp"
-        android:layout_marginEnd="80dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
+        android:paddingTop="30dp"
         android:shadowColor="#000000"
         android:shadowDx="10"
         android:shadowDy="10"
@@ -42,238 +46,560 @@
         android:text="8.0"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#D38E28"
+        android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="96sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/weatherimage"
-        android:layout_width="179dp"
-        android:layout_height="176dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="116dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="216dp"
+        android:background="@drawable/rounded_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cloudy" />
 
+
     <TextView
         android:id="@+id/uvIndexText"
-        android:layout_width="259dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginEnd="76dp"
+        android:layout_width="309dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="312dp"
+        android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
+        android:paddingTop="3dp"
         android:shadowColor="#000000"
-        android:shadowDx="10"
-        android:shadowDy="10"
-        android:shadowRadius="14"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="1"
         android:text="High UV Index"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#D36C28"
         android:textColorLink="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/peakuv"
-        android:layout_width="83dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="412dp"
-        android:layout_marginEnd="288dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uv1" />
-
-    <ImageView
-        android:id="@+id/moderateuv"
-        android:layout_width="83dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="412dp"
-        android:layout_marginEnd="164dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/protection" />
-
-    <ImageView
-        android:id="@+id/lowuv"
-        android:layout_width="83dp"
-        android:layout_height="83dp"
-        android:layout_marginTop="412dp"
-        android:layout_marginEnd="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/uv" />
-
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
-        android:layout_marginEnd="280dp"
+        android:id="@+id/tempnum"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="264dp"
+        android:background="@drawable/rounded_bg"
         android:fontFamily="@font/lato"
-        android:text="08:00-11:00"
+        android:paddingTop="2dp"
+        android:shadowColor="#000000"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:text="Temperaure: --° C"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
         android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="normal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="304dp"
-        android:fontFamily="@font/lato"
-        android:text="6.0-7.5"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="71dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="296dp"
-        android:fontFamily="@font/lato"
-        android:text="High"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
-        android:layout_marginEnd="152dp"
-        android:fontFamily="@font/lato"
-        android:text="12:00-17:00"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="516dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="@font/lato"
-        android:text="18:00-22:00"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="300dp"
-        android:fontFamily="@font/lato"
-        android:text="6.0-7.5"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="180dp"
-        android:fontFamily="@font/lato"
-        android:text="8.0-3.5"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="68dp"
-        android:fontFamily="@font/lato"
-        android:text="0-2"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="38dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="184dp"
-        android:fontFamily="@font/lato"
-        android:text="Peak"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="41dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="60dp"
-        android:fontFamily="@font/lato"
-        android:text="Low"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextClock
         android:id="@+id/textClock3"
-        android:layout_width="136dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="155dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="60dp"
+        android:format24Hour="HH:mm"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="34sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CVmid"
+        android:layout_width="123dp"
+        android:layout_height="123dp"
+        app:cardBackgroundColor="#B2F44336"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/peakUV"
+                android:layout_width="52dp"
+                android:layout_height="51dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/uv" />
+
+            <TextView
+                android:id="@+id/tvpeak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/lato"
+                android:shadowColor="#000000"
+
+                android:text="Peak"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/uvpeaknum"
+                android:layout_width="74dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/lato"
+                android:shadowColor="#000000"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="14"
+                android:text="10.1"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvpeak"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/peakUV"
+                app:layout_constraintVertical_bias="0.873" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CVleft"
+        android:layout_width="123dp"
+        android:layout_height="123dp"
+        app:cardBackgroundColor="#8DFF9800"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.006"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvavg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/lato"
+                android:shadowColor="#000000"
+
+                android:text="Average"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/avgUV"
+                android:layout_width="62dp"
+                android:layout_height="55dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/uv1" />
+
+            <TextView
+                android:id="@+id/uvavgnum"
+                android:layout_width="77dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/lato"
+                android:shadowColor="#000000"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="14"
+                android:text="7.6"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.689" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/CVright"
+        android:layout_width="123dp"
+        android:layout_height="123dp"
+        app:cardBackgroundColor="#A34CAF50"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvlow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/lato"
+
+                android:shadowColor="#000000"
+                android:text="Low"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/lowUV"
+                android:layout_width="51dp"
+                android:layout_height="54dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/uvprotection" />
+
+            <TextView
+                android:id="@+id/uvlownum"
+                android:layout_width="74dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/lato"
+                android:shadowColor="#000000"
+                android:shadowDx="10"
+                android:shadowDy="10"
+                android:shadowRadius="14"
+                android:text="1.4"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="#FFFFFF"
+                android:textColorLink="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.492"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.695" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="403dp"
+        android:layout_height="245dp"
+        android:layout_marginBottom="88dp"
+        android:padding="16dp"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- CardView 1 -->
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card1"
+                android:layout_width="328dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="#E6E6FA"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp"
+
+                >
+
+                <TextView
+                    android:id="@+id/alerttxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:paddingVertical="60dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="30dp"
+                    android:text="Alert will appear here. Alert will appear herer. Alert will appear herer"
+                    android:textAlignment="viewStart"
+                    android:textColor="#00008B"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/TVUVAlert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
+                    android:shadowDx="10"
+                    android:shadowDy="10"
+                    android:shadowRadius="14"
+                    android:text="UV Alerts:"
+                    android:textAlignment="textStart"
+                    android:textColor="#0000FF"
+                    android:textFontWeight="700"
+                    android:textSize="34sp" />
+
+                <ImageView
+                    android:id="@+id/IVAlertSign"
+                    android:layout_width="318dp"
+                    android:layout_height="62dp"
+                    android:paddingLeft="260dp"
+                    app:srcCompat="@drawable/shield" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card2"
+                android:layout_width="328dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="#F0D0D0"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:id="@+id/forecasttxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:paddingVertical="60dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="30dp"
+                    android:text="Forecast will appear here. Forecast will appear herer. Forecast will appear herer"
+                    android:textAlignment="viewStart"
+                    android:textColor="#8B0000"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                     />
+
+                <TextView
+                    android:id="@+id/TVHourlyForecast"
+                    android:layout_width="300dp"
+                    android:layout_height="41dp"
+                    android:fallbackLineSpacing="true"
+                    android:fontFamily="@font/lato"
+                    android:gravity="center"
+                    android:paddingTop="3dp"
+                    android:paddingRight="17dp"
+                    android:text="Hourly Forecast:"
+                    android:textColor="#FF0000"
+                    android:textFontWeight="700"
+                    android:textSize="34sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card3"
+                android:layout_width="328dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                app:cardBackgroundColor="#E97878"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="4dp">
+
+                <TextView
+                    android:id="@+id/sunscreenalerttxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:paddingVertical="60dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="30dp"
+                    android:text="Sunscreen SPF will appear here. Sunscreen SPF will appear here. Sunscreen SPF will appear here."
+                    android:textAlignment="viewStart"
+                    android:textColor="#ffeb3b"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/TVSunscreen"
+                    android:layout_width="270dp"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/lato"
+                    android:gravity="center"
+                    android:paddingRight="75dp"
+                    android:text="Sunscreen"
+                    android:textColor="#FFFFFF"
+                    android:textFontWeight="700"
+                    android:textSize="34sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <!-- Add more CardViews as needed -->
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ProgressBar
+        android:id="@+id/uvprogressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="9dp"
+        android:background="@drawable/rounded_bg"
+        android:max="12"
+        android:progress="0"
+        android:progressTint="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/uvIndexText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tempnum"
+        app:layout_constraintTop_toBottomOf="@+id/uvindexnum"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvtimepeak"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="168dp"
+        android:background="@drawable/rounded_bg"
+        android:fontFamily="@font/lato"
+        android:paddingTop="5dp"
+        android:shadowColor="#000000"
+        android:text="12:00 AM"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CVmid" />
+
+    <TextView
+        android:id="@+id/tvtimeavg"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rounded_bg"
+        android:fontFamily="@font/lato"
+        android:paddingTop="5dp"
+        android:shadowColor="#000000"
+        android:text="6:00 PM"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CVleft" />
+
+    <TextView
+        android:id="@+id/tvtimelow"
+        android:layout_width="70dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rounded_bg"
+        android:fontFamily="@font/lato"
+        android:paddingTop="5dp"
+        android:shadowColor="#000000"
+        android:text="21:00"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CVright" />
+
+    <ImageButton
+        android:id="@+id/refresh"
+        android:layout_width="46dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="#00FFFFFF"
+        android:alpha="0.2"
+        android:contentDescription="refresh button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reload" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
