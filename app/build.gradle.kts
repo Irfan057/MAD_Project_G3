@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.madprojectg3"
-        minSdk = 33
+        minSdk = 30
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -41,12 +41,12 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.11.0")
     implementation(libs.firebase.firestore)
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
-   
+
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
-
-
     implementation("com.google.code.gson:gson:2.8.8")
 
+    implementation ("com.google.firebase:firebase-auth:22.0.0")
+    implementation ("com.google.firebase:firebase-database:20.3.3")
 
     implementation ("com.github.bumptech.glide:glide:4.15.1") //For Glide
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")

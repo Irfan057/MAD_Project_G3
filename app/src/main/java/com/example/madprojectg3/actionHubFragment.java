@@ -12,9 +12,11 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,6 @@ import java.util.List;
  */
 public class actionHubFragment extends Fragment {
 
-    // Parameters for this fragment (optional for your use case)
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
@@ -65,24 +66,21 @@ public class actionHubFragment extends Fragment {
         listView = rootView.findViewById(R.id.projectListView);
         projectList = new ArrayList<>();
 
-        // Initialize Firebase Firestore
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Initialize Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("project");
 
-        // Fetch data from Firestore
-        fetchData(db);
+        // Fetch data from Realtime Database
+        fetchData(databaseReference);
 
         // Set item click listener to open project details
         listView.setOnItemClickListener((adapterView, view, position, id) -> {
-            // Get the selected project
             Project selectedProject = projectList.get(position);
 
-            // Check if the selected project is null
             if (selectedProject == null) {
                 Toast.makeText(getContext(), "Error: Project not found!", Toast.LENGTH_SHORT).show();
-                return; // Stop further execution
+                return;
             }
 
-            // Create an instance of ProjectDetailFragment with the project details
             Fragment projectDetailFragment = ProjectDetailFragment.newInstance(
                     selectedProject.getName(),
                     selectedProject.getDescription(),
@@ -90,10 +88,9 @@ public class actionHubFragment extends Fragment {
                     selectedProject.getimageURL()
             );
 
-            // Replace the current fragment with ProjectDetailFragment
             getParentFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, projectDetailFragment)
-                    .addToBackStack(null) // Allows user to go back to the previous fragment
+                    .addToBackStack(null)
                     .commit();
         });
 
@@ -103,69 +100,61 @@ public class actionHubFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Handle Button Clicks for Fragment Navigation
         Button donateButton = view.findViewById(R.id.donateButton);
         donateButton.setOnClickListener(v -> {
-            // Switch to DonationFragment
             donationFragment donationFragment = new donationFragment();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, donationFragment); // Replace with your container's ID
-            transaction.addToBackStack(null); // Optional, if you want to add the fragment to back stack
+            transaction.replace(R.id.fragment_container, donationFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
         Button logDonationButton = view.findViewById(R.id.logButton);
         logDonationButton.setOnClickListener(v -> {
-            // Switch to LogDonationFragment
             LogDonationFragment logDonationFragment = new LogDonationFragment();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, logDonationFragment); // Replace with your container's ID
-            transaction.addToBackStack(null); // Optional, if you want to add the fragment to back stack
+            transaction.replace(R.id.fragment_container, logDonationFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
 
         Button historyButton = view.findViewById(R.id.historyButton);
         historyButton.setOnClickListener(v -> {
-            // Switch to DonationHistoryFragment
             DonationHistoryFragment historyFragment = new DonationHistoryFragment();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, historyFragment); // Replace with your container's ID
-            transaction.addToBackStack(null); // Optional, if you want to add the fragment to back stack
+            transaction.replace(R.id.fragment_container, historyFragment);
+            transaction.addToBackStack(null);
             transaction.commit();
         });
     }
 
-    private void fetchData(FirebaseFirestore db) {
-        // Fetch data from Firestore (projects collection)
-        db.collection("projects")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task.getResult();
-                        if (querySnapshot != null) {
-                            // Loop through each document in the collection
-                            for (QueryDocumentSnapshot document : querySnapshot) {
-                                // Retrieve the fields from the document
-                                String name = document.getString("name");
-                                String description = document.getString("description");
-                                String websiteURL = document.getString("website_url");
-                                String imageURL = document.getString("image_url");
+    private void fetchData(DatabaseReference databaseReference) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                projectList.clear();
 
-                                // Create a new Project object and add it to the list
-                                Project project = new Project(name, description, websiteURL, imageURL);
-                                projectList.add(project);
-                            }
+                for (DataSnapshot projectSnapshot : dataSnapshot.getChildren()) {
+                    String name = projectSnapshot.child("name").getValue(String.class);
+                    String description = projectSnapshot.child("desc").getValue(String.class);
+                    String websiteURL = projectSnapshot.child("website_url").getValue(String.class);
+                    String imageURL = projectSnapshot.child("image_url").getValue(String.class);
 
-                            // Notify the adapter that data has been updated
-                            if (getActivity() != null) {
-                                ProjectAdapter adapter = new ProjectAdapter(getContext(), projectList);
-                                listView.setAdapter(adapter);
-                            }
-                        }
-                    } else {
-                        // Handle errors if Firestore fetch fails
-                        Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    Project project = new Project(name, description, websiteURL, imageURL);
+                    projectList.add(project);
+                }
+
+                if (getActivity() != null) {
+                    ProjectAdapter adapter = new ProjectAdapter(getContext(), projectList);
+                    listView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
+

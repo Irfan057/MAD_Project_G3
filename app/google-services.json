@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "974274889750",
-    "project_id": "climate-project-list",
-    "storage_bucket": "climate-project-list.firebasestorage.app"
+    "project_number": "13101553808",
+    "firebase_url": "https://database-for-weather-app-default-rtdb.firebaseio.com",
+    "project_id": "database-for-weather-app",
+    "storage_bucket": "database-for-weather-app.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:974274889750:android:27671c05fed1ad18278d37",
+        "mobilesdk_app_id": "1:13101553808:android:8e45f3f5844b96f1d32015",
         "android_client_info": {
           "package_name": "com.example.madprojectg3"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBec57Z7mfup5oYQDqwEkVMFdLwhqMHFo4"
+          "current_key": "AIzaSyB-YEl569qqgRXCXStFV3P_RBn7MjfPqzY"
         }
       ],
       "services": {

@@ -9,12 +9,11 @@
     android:padding="16dp">
 
     <!-- Space at the top -->
-
     <Space
         android:layout_width="match_parent"
         android:layout_height="24dp" />
 
-    <!-- Project Name -->
+    <!-- Project Name (Title) -->
     <TextView
         android:id="@+id/projectNameTextView"
         android:layout_width="match_parent"
@@ -29,54 +28,60 @@
         android:textSize="32sp"
         android:textStyle="bold" />
 
-    <!-- Space between elements -->
+    <!-- Space between Title and ScrollView -->
     <Space
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="16dp" />
 
-    <!-- Project Image -->
-    <ImageView
-        android:id="@+id/projectImageView"
+    <!-- Scrollable Content -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="centerCrop"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <!-- Project Description -->
-    <TextView
-        android:id="@+id/projectDescriptionTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/raleway_medium"
-        android:lineSpacingExtra="4dp"
-        android:text="Project Description"
-        android:textAlignment="center"
-        android:textColor="#E0E0E0"
-        android:textSize="16sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <!-- Call to Action -->
+            <!-- Project Image -->
+            <ImageView
+                android:id="@+id/projectImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop" />
 
-    <!-- Button Section -->
+            <!-- Project Description -->
+            <TextView
+                android:id="@+id/projectDescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/raleway_medium"
+                android:lineSpacingExtra="4dp"
+                android:text="Project Description"
+                android:textAlignment="center"
+                android:textColor="#E0E0E0"
+                android:textSize="16sp" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/websiteButton"
+                android:layout_width="240dp"
+                android:layout_height="59dp"
+                android:layout_gravity="center"
+                android:layout_margin="16dp"
+                android:backgroundTint="#FFD12E"
+                android:fontFamily="@font/raleway_medium"
+                android:gravity="center_horizontal"
+                android:padding="12dp"
+                android:text="More Info"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/websiteButton"
-            android:layout_width="240dp"
-            android:layout_height="59dp"
-            android:layout_margin="16dp"
-            android:backgroundTint="#FFD12E"
-            android:fontFamily="@font/raleway_medium"
-            android:padding="12dp"
-            android:text="More Info"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
