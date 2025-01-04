@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         String userId = getIntent().getStringExtra("userId");
         String username = getIntent().getStringExtra("username");
         String skintype = getIntent().getStringExtra("skintype");
-
+        int frag_destination = getIntent().getIntExtra("transition_id",0);
 
         Bundle args = new Bundle();
         args.putString("userId", userId);
@@ -44,9 +44,15 @@ public class MainActivity extends AppCompatActivity {
         ImageButton actionHubBtn = findViewById(R.id.actionhubBtn);
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainerView, homeFragment)
-                    .commit();
+            if(frag_destination == 0) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, homeFragment)
+                        .commit();
+            }else if(frag_destination == 1){
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentContainerView, infositeFragment)
+                        .commit();
+            }
         }
 
         userBtn.setOnClickListener(v -> getSupportFragmentManager().beginTransaction()
