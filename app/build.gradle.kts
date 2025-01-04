@@ -27,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,6 +36,8 @@ android {
 
 dependencies {
 
+
+
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation ("com.google.firebase:firebase-auth:22.0.0")
     implementation("com.google.firebase:firebase-analytics")
@@ -42,16 +45,25 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation ("com.google.android.gms:play-services-maps:19.0.0")
 
-
-
-
-
-
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+
+
+    implementation("com.google.code.gson:gson:2.8.8")
+
+
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    implementation(libs.play.services.maps)
+    implementation(libs.legacy.support.v4) //For Glide
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+    implementation(libs.tracing.perfetto.handshake)
+
+
     implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
