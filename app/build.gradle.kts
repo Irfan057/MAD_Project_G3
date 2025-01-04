@@ -1,5 +1,7 @@
 plugins {
-    alias(libs.plugins.android.application)
+
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -33,6 +35,16 @@ android {
 }
 
 dependencies {
+
+
+
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    implementation ("com.google.firebase:firebase-auth:22.0.0")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.google.firebase:firebase-database:20.3.3")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.android.gms:play-services-maps:19.0.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -49,10 +61,10 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.legacy.support.v4) //For Glide
     annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
-
-    // Other dependencies
     implementation(libs.tracing.perfetto.handshake)
 
+
+    implementation(libs.play.services.maps)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
