@@ -10,45 +10,45 @@
     tools:ignore="ExtraText">
 
 
-    <EditText
+    <TextView
         android:id="@+id/time2"
-        android:layout_width="222dp"
-        android:layout_height="60dp"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
         android:fontFamily="@font/raleway_medium"
         android:text="Jake"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.245" />
+        app:layout_constraintVertical_bias="0.071" />
 
-    <EditText
+    <TextView
         android:id="@+id/time3"
-        android:layout_width="222dp"
-        android:layout_height="60dp"
+        android:layout_width="235dp"
+        android:layout_height="35dp"
         android:fontFamily="@font/raleway_medium"
+        android:paddingTop="0dp"
         android:text="Kuala Lumpur"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         android:textColorLink="#FFFFFF"
-        android:textSize="15sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintTop_toBottomOf="@id/time2"
+        app:layout_constraintVertical_bias="0.203" />
 
     <TextView
         android:id="@+id/tv_myprofile"
@@ -68,8 +68,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="372dp"
+        android:layout_height="153dp"
+        android:contentDescription="map"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.145" />
+
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#00FFFFFF"
@@ -82,30 +93,45 @@
         app:layout_constraintVertical_bias="0.023"
         app:srcCompat="@drawable/user_edit" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="388dp"
-        android:layout_height="470dp"
+    <ImageButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="logoutbtn"
+        android:src="@drawable/baseline_logout_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.779"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.938">
+        app:layout_constraintVertical_bias="0.023" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="411dp"
+        android:layout_height="476dp"
+        android:layout_marginBottom="75dp"
+        android:clipToPadding="false"
+        android:paddingBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/user_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="126dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginRight="5dp"
                 app:cardBackgroundColor="#FFD12E"
                 app:cardCornerRadius="25dp"
-                app:cardElevation="6dp"
+                app:cardElevation="8dp"
                 tools:ignore="MissingConstraints">
 
 
@@ -124,7 +150,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-
                 <ProgressBar
                     android:id="@+id/progressBar"
                     style="?android:attr/progressBarStyle"
@@ -142,9 +167,10 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginRight="8dp"
                 app:cardBackgroundColor="#ffd12e"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -167,22 +193,24 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/skintype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="300dp"
                     android:layout_marginTop="38dp"
                     android:fontFamily="@font/raleway_medium"
                     android:text="Dry"
-                    android:textSize="40dp" />
+                    android:textSize="25dp" />
 
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginRight="8dp"
                 app:cardBackgroundColor="#ffd12e"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -204,12 +232,13 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_sunscreen_reco_link"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="300dp"
                     android:layout_marginTop="35dp"
                     android:fontFamily="@font/raleway_medium"
-                    android:text="Moisturizing sunscreen SPF30+"
+                    android:text="Link"
                     android:textSize="15dp" />
 
 
@@ -217,9 +246,10 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="116dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="105dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginRight="8dp"
                 app:cardBackgroundColor="#ffd12e"
                 app:cardCornerRadius="25dp"
                 app:cardElevation="6dp"
@@ -240,22 +270,21 @@
                     android:textColor="#000000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_health_reco_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="300dp"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/raleway_medium"
+                    android:text="Link"
+                    android:textSize="15dp" />
             </androidx.cardview.widget.CardView>
 
 
         </LinearLayout>
     </ScrollView>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="166dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="76dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/city" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
