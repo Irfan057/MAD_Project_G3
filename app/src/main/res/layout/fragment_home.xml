@@ -443,7 +443,7 @@
                     android:textColor="#8B0000"
                     android:textSize="24sp"
                     android:textStyle="bold"
-                    />
+                     />
 
                 <TextView
                     android:id="@+id/TVHourlyForecast"
@@ -600,5 +600,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/reload" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
