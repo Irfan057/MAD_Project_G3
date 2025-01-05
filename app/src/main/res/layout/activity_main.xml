@@ -149,7 +149,7 @@
         android:layout_marginEnd="96dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/raleway"
-        android:text="Search"
+        android:text="Info Site"
         android:textAlignment="viewStart"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
