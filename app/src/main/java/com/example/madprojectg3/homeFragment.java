@@ -158,7 +158,7 @@ public class homeFragment extends Fragment {
 
     // Method to call WeatherAPI
     private void callWeatherApi() {
-        String apiKey = "547cc9fb080b45a7a0055516241912";
+        String apiKey = "799a0a43189c4af1b86160602250501";
         double latitude = 3.1667;
         double longitude = 101.7;
 
@@ -226,7 +226,7 @@ public class homeFragment extends Fragment {
 
 
     private void fetchUvForecast() {
-        String apiKey = "547cc9fb080b45a7a0055516241912";
+        String apiKey = "799a0a43189c4af1b86160602250501";
         String location = "Kuala Lumpur";  // You can change this to any location
 
         // Construct the URL for the WeatherAPI forecast endpoint
@@ -325,7 +325,7 @@ public class homeFragment extends Fragment {
     }
 
     private void makeForecastAlert() {
-        String apiKey = "547cc9fb080b45a7a0055516241912";
+        String apiKey = "799a0a43189c4af1b86160602250501";
         String location = "Kuala Lumpur";
 
         String forecastUrl = "https://api.weatherapi.com/v1/forecast.json?key=" + apiKey + "&q=" + location + "&days=1&aqi=no&alerts=no";

@@ -14,12 +14,15 @@
         android:name="com.example.madprojectg3.homeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:paddingTop="9dp"
+        android:paddingRight="3dp"
+        android:transitionName="fragmentTransition"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:transitionName="fragmentTransition"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
@@ -123,17 +126,20 @@
 
     <TextView
         android:id="@+id/TVHome"
-        android:layout_width="49dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="67dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="4dp"
         android:fontFamily="@font/raleway"
+        android:paddingTop="7dp"
+        android:paddingRight="1dp"
         android:text="Home"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fragmentContainerView"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
