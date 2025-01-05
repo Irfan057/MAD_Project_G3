@@ -111,21 +111,44 @@ public class actionHubFragment extends Fragment {
 
         Button logDonationButton = view.findViewById(R.id.logButton);
         logDonationButton.setOnClickListener(v -> {
+            // Get the userId from arguments or the parent activity
+            String userId = getArguments() != null ? getArguments().getString("userId") : null;
+
+            // Create a new LogDonationFragment
             LogDonationFragment logDonationFragment = new LogDonationFragment();
+
+            // Create a Bundle and pass userId as an argument
+            Bundle args = new Bundle();
+            args.putString("userId", userId);  // Pass userId to LogDonationFragment
+            logDonationFragment.setArguments(args);
+
+            // Perform the fragment transaction
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, logDonationFragment);
-            transaction.addToBackStack(null);
+            transaction.addToBackStack(null);  // Optional: Add to backstack if needed
             transaction.commit();
         });
 
         Button historyButton = view.findViewById(R.id.historyButton);
         historyButton.setOnClickListener(v -> {
+            // Get userId from arguments or parent activity
+            String userId = getArguments() != null ? getArguments().getString("userId") : null;
+
+            // Create DonationHistoryFragment
             DonationHistoryFragment historyFragment = new DonationHistoryFragment();
+
+            // Pass userId to DonationHistoryFragment
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            historyFragment.setArguments(args);
+
+            // Perform the fragment transaction
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, historyFragment);
-            transaction.addToBackStack(null);
+            transaction.addToBackStack(null); // Optional for back navigation
             transaction.commit();
         });
+
     }
 
     private void fetchData(DatabaseReference databaseReference) {

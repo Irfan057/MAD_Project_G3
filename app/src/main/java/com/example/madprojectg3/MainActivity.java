@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         infositeFragment = new infositeFragment();
         donationFragment = new donationFragment();
         actionHubFragment = new actionHubFragment();
+        actionHubFragment.setArguments(args);
 
         ImageButton userBtn = findViewById(R.id.userBtn);
         ImageButton homeBtn = findViewById(R.id.homeBtn);

@@ -14,8 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +35,7 @@ public class LogDonationFragment extends Fragment {
     private DatabaseReference donationRef, userDonationHistoryRef;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> projectList;
+    private String userId;
 
     public LogDonationFragment() {
         // Required empty public constructor
@@ -46,22 +45,26 @@ public class LogDonationFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_log_donation, container, false);
 
+        // Initialize UI components
         projectSpinner = view.findViewById(R.id.projectSpinner);
         amountEditText = view.findViewById(R.id.amountEditText);
         logDonationButton = view.findViewById(R.id.logDonationButton);
 
-        // Initialize Realtime Database
+        // Initialize Realtime Database references
         database = FirebaseDatabase.getInstance();
-        donationRef = database.getReference("donation");  // Reference for donation projects
+        donationRef = database.getReference("donation");
         userDonationHistoryRef = database.getReference("users");
 
+        // Initialize project list and adapter for spinner
         projectList = new ArrayList<>();
         adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, projectList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         projectSpinner.setAdapter(adapter);
 
-        // Load spinner data from Realtime Database
+        // Load projects into spinner
         loadSpinnerData();
+
+        userId = getArguments() != null ? getArguments().getString("userId") : null;
 
         // Button click listener to log donation
         logDonationButton.setOnClickListener(v -> logDonation());
@@ -109,10 +112,6 @@ public class LogDonationFragment extends Fragment {
         String date = new SimpleDateFormat("yyyy-MM-dd").format(calendar.getTime());
         String time = new SimpleDateFormat("HH:mm").format(calendar.getTime());
 
-        // Retrieve the userId from Firebase Authentication
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userId = user != null ? user.getUid() : null;
-
         if (userId == null) {
             Toast.makeText(requireContext(), "User not logged in", Toast.LENGTH_SHORT).show();
             return;
@@ -133,9 +132,12 @@ public class LogDonationFragment extends Fragment {
         donationData.put("Time_24H", time);
         donationData.put("Receiver", selectedProject);
 
-        // Save donation data to Realtime Database under the specific user's donation history
+        // Save donation data to Realtime Database under the specific user's donation history (using userId)
         userDonationHistoryRef.child(userId).child("donationHistory").child(donationId).setValue(donationData)
                 .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Donation logged successfully!", Toast.LENGTH_SHORT).show())
                 .addOnFailureListener(e -> Toast.makeText(requireContext(), "Failed to log donation: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }
+
+
+

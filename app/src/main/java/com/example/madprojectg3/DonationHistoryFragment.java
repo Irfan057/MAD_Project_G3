@@ -2,6 +2,7 @@ package com.example.madprojectg3;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,33 +34,15 @@ public class DonationHistoryFragment extends Fragment {
     private DonationHistoryAdapter adapter;
     private List<DonationHistory> donationHistoryList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public DonationHistoryFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DonationHistoryFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static DonationHistoryFragment newInstance(String param1, String param2) {
         DonationHistoryFragment fragment = new DonationHistoryFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString("param1", param1);
+        args.putString("param2", param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,10 +50,6 @@ public class DonationHistoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -82,40 +65,51 @@ public class DonationHistoryFragment extends Fragment {
         adapter = new DonationHistoryAdapter(getContext(), donationHistoryList);
         recyclerView.setAdapter(adapter);
 
-        // Fetch data from Firestore
+        // Fetch data from Realtime Database
         fetchDonationHistoryData();
 
         return rootView;
     }
 
     private void fetchDonationHistoryData() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        // Retrieve userId from arguments
+        String userId = getArguments() != null ? getArguments().getString("userId") : null;
 
-        db.collection("userdonation")
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task.getResult();
-                        if (querySnapshot != null) {
-                            for (QueryDocumentSnapshot document : querySnapshot) {
-                                String receiver = document.getString("Receiver");
-                                Object donationAmountObj = document.get("DonationAmount_RM");
-                                String donationAmount = donationAmountObj != null ? donationAmountObj.toString() : "N/A";
-                                String date = document.getString("Date");
-                                String time = document.getString("Time_24H");
-                                String dateTime = date + ", " + time; // Concatenate date and time
+        if (userId == null) {
+            Toast.makeText(getContext(), "User ID not available", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                                // Create DonationHistory object and add it to the list
-                                DonationHistory donationHistory = new DonationHistory(receiver, donationAmount, dateTime);
-                                donationHistoryList.add(donationHistory);
-                            }
+        DatabaseReference userDonationsRef = FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(userId)
+                .child("donationHistory");
 
-                            // Notify the adapter that data has been loaded
-                            adapter.notifyDataSetChanged();
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        userDonationsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                donationHistoryList.clear();
+                for (DataSnapshot donationSnapshot : snapshot.getChildren()) {
+                    String receiver = donationSnapshot.child("Receiver").getValue(String.class);
+                    Object donationAmountObj = donationSnapshot.child("DonationAmount_RM").getValue();
+                    String donationAmount = donationAmountObj != null ? donationAmountObj.toString() : "N/A";
+                    String date = donationSnapshot.child("Date").getValue(String.class);
+                    String time = donationSnapshot.child("Time_24H").getValue(String.class);
+                    String dateTime = date + ", " + time; // Concatenate date and time
+
+                    // Create DonationHistory object and add it to the list
+                    DonationHistory donationHistory = new DonationHistory(receiver, donationAmount, dateTime);
+                    donationHistoryList.add(donationHistory);
+                }
+
+                // Notify the adapter that data has been loaded
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Error fetching data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
