@@ -6,9 +6,10 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/projectName"
+        android:id="@+id/projectNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_medium"
         android:text="Project Name"
         android:textSize="23sp"
         android:textStyle="bold" />

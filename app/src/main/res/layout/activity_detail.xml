@@ -23,7 +23,7 @@
         android:fontFamily="@font/raleway_medium"
         android:padding="12dp"
         android:paddingBottom="8dp"
-        android:text="Greenpeace Malaysia"
+        android:text="Project Name"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="32sp"
@@ -52,7 +52,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/raleway_medium"
         android:lineSpacingExtra="4dp"
-        android:text="Greenpeace Malaysia focuses on raising awareness and driving action for climate change, renewable energy, and environmental conservation."
+        android:text="Project Description"
         android:textAlignment="center"
         android:textColor="#E0E0E0"
         android:textSize="16sp" />
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/moreInfoButton"
+            android:id="@+id/websiteButton"
             android:layout_width="240dp"
             android:layout_height="59dp"
             android:layout_margin="16dp"

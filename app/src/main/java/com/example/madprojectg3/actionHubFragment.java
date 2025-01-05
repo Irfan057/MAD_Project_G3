@@ -4,8 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,28 +28,18 @@ import androidx.fragment.app.Fragment;
  */
 public class actionHubFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView listView;
+    private List<Project> projectList;
 
     public actionHubFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ActionHubFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static actionHubFragment newInstance(String param1, String param2) {
         actionHubFragment fragment = new actionHubFragment();
         Bundle args = new Bundle();
@@ -57,7 +61,123 @@ public class actionHubFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_action_hub, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_action_hub, container, false);
+
+        listView = rootView.findViewById(R.id.projectListView);
+        projectList = new ArrayList<>();
+
+        // Initialize Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("project");
+
+        // Fetch data from Realtime Database
+        fetchData(databaseReference);
+
+        // Set item click listener to open project details
+        listView.setOnItemClickListener((adapterView, view, position, id) -> {
+            Project selectedProject = projectList.get(position);
+
+            if (selectedProject == null) {
+                Toast.makeText(getContext(), "Error: Project not found!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            Fragment projectDetailFragment = ProjectDetailFragment.newInstance(
+                    selectedProject.getName(),
+                    selectedProject.getDescription(),
+                    selectedProject.getWebsiteUrl(),
+                    selectedProject.getimageURL()
+            );
+
+            getParentFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, projectDetailFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        return rootView;
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Button donateButton = view.findViewById(R.id.donateButton);
+        donateButton.setOnClickListener(v -> {
+            donationFragment donationFragment = new donationFragment();
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, donationFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        });
+
+        Button logDonationButton = view.findViewById(R.id.logButton);
+        logDonationButton.setOnClickListener(v -> {
+            // Get the userId from arguments or the parent activity
+            String userId = getArguments() != null ? getArguments().getString("userId") : null;
+
+            // Create a new LogDonationFragment
+            LogDonationFragment logDonationFragment = new LogDonationFragment();
+
+            // Create a Bundle and pass userId as an argument
+            Bundle args = new Bundle();
+            args.putString("userId", userId);  // Pass userId to LogDonationFragment
+            logDonationFragment.setArguments(args);
+
+            // Perform the fragment transaction
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, logDonationFragment);
+            transaction.addToBackStack(null);  // Optional: Add to backstack if needed
+            transaction.commit();
+        });
+
+        Button historyButton = view.findViewById(R.id.historyButton);
+        historyButton.setOnClickListener(v -> {
+            // Get userId from arguments or parent activity
+            String userId = getArguments() != null ? getArguments().getString("userId") : null;
+
+            // Create DonationHistoryFragment
+            DonationHistoryFragment historyFragment = new DonationHistoryFragment();
+
+            // Pass userId to DonationHistoryFragment
+            Bundle args = new Bundle();
+            args.putString("userId", userId);
+            historyFragment.setArguments(args);
+
+            // Perform the fragment transaction
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, historyFragment);
+            transaction.addToBackStack(null); // Optional for back navigation
+            transaction.commit();
+        });
+
+    }
+
+    private void fetchData(DatabaseReference databaseReference) {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                projectList.clear();
+
+                for (DataSnapshot projectSnapshot : dataSnapshot.getChildren()) {
+                    String name = projectSnapshot.child("name").getValue(String.class);
+                    String description = projectSnapshot.child("desc").getValue(String.class);
+                    String websiteURL = projectSnapshot.child("website_url").getValue(String.class);
+                    String imageURL = projectSnapshot.child("image_url").getValue(String.class);
+
+                    Project project = new Project(name, description, websiteURL, imageURL);
+                    projectList.add(project);
+                }
+
+                if (getActivity() != null) {
+                    ProjectAdapter adapter = new ProjectAdapter(getContext(), projectList);
+                    listView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getContext(), "Error fetching data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
+

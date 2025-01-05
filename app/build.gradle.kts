@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.madprojectg3"
-        minSdk = 33
+        minSdk = 30
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -68,4 +68,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("androidx.annotation:annotation:1.7.0")
+
 }
