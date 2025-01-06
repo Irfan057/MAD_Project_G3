@@ -89,7 +89,7 @@ public class RegisterForm extends AppCompatActivity {
 
     private boolean isValidPassword(String password) {
         // Check if password is at least 6 characters long and contains at least one special character
-        String regex = "^(?=.*[!@#$%^&*(),.?\":{}|<>]).{6,}$";
+        String regex = "^(?=.*[!@#$%^&*(),.?\\\":{}|<>\\\\[\\\\]_~\\\\\\\\=/]).{6,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
