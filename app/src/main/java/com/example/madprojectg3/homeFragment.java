@@ -55,8 +55,6 @@ public class homeFragment extends Fragment {
     private static final String CHANNEL_ID = "refresh_channel";
     private static final int NOTIFICATION_ID = 1;
     private TextView alerttxt;
-
-
     private TextView sunscreenAlert;
     private TextView uvIndexTextView;
     private TextView uvIndexText;
@@ -227,7 +225,7 @@ public class homeFragment extends Fragment {
 
     private void fetchUvForecast() {
         String apiKey = "799a0a43189c4af1b86160602250501";
-        String location = "Kuala Lumpur";  // You can change this to any location
+        String location = "Kuala Lumpur";
 
         // Construct the URL for the WeatherAPI forecast endpoint
         String forecastUrl = "https://api.weatherapi.com/v1/forecast.json?key=" + apiKey + "&q=" + location + "&days=1&aqi=no&alerts=no";
@@ -416,8 +414,8 @@ public class homeFragment extends Fragment {
                                 StringBuilder forecastMessage = new StringBuilder();
 
                                 // Current UV level context with current time
-                                forecastMessage.append(String.format("Current UV at %s: %.1f. ",
-                                        formatTo12HourFormat(finalCurrentTimeStr), finalCurrentUv));
+                                //forecastMessage.append(String.format("Current UV at %s: %.1f. ",
+                                //formatTo12HourFormat(finalCurrentTimeStr), finalCurrentUv));
 
                                 // Check for significant changes
                                 if (finalNextHourUv > finalCurrentUv + 1) {
