@@ -46,6 +46,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -65,6 +72,10 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
     private static final LatLng KUALA_LUMPUR = new LatLng(3.1390, 101.6869); // KL coordinates
     private static final float DEFAULT_ZOOM = 12f;
 
+    private ImageButton refreshButton;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference databaseReference;
+
     public userFragment() {
         // Required empty public constructor
     }
@@ -76,6 +87,7 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
         // Initialize views
         usernameTextView = view.findViewById(R.id.time2);
         skintypeTextView = view.findViewById(R.id.skintype);
+        refreshButton = view.findViewById(R.id.RefreshBtnUser);
         cityTextView = view.findViewById(R.id.time3);
         TextView sunscreenLinkTextView = view.findViewById(R.id.tv_sunscreen_reco_link);
         TextView healthTipsLinkTextView = view.findViewById(R.id.tv_health_reco_link);
@@ -94,14 +106,70 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
         setupLocationRequest();
         setupLocationCallback();
 
-        // Handle user data
-        handleUserData(editBtn, sunscreenLinkTextView, healthTipsLinkTextView);
-
         // Check location settings and start location updates
         checkLocationSettings();
 
+        // Handle user data
+        handleUserData(editBtn, sunscreenLinkTextView, healthTipsLinkTextView);
+
+
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
+        String userId = getArguments().getString("userId");
+
+
+        // Fetch initial data
+        if (userId != null) {
+            fetchUserData(userId); // Fetch user data using the passed userId
+        }
+
+        // Set up the Refresh Button click listener
+        refreshButton.setOnClickListener(v -> {
+            if (userId != null) {
+                fetchUserData(userId); // Refresh data when the button is clicked
+            }
+        });
+
         return view;
     }
+
+    private void fetchUserData(String userId) {
+        // Fetch user data from Firebase using the userId
+        databaseReference.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Retrieve user data from Firebase
+                    String username = snapshot.child("username").getValue(String.class);
+                    String skinType = snapshot.child("skinType").getValue(String.class);
+
+                    // Update UI with fetched data
+                    usernameTextView.setText(username != null ? username : "Username not found");
+                    skintypeTextView.setText(skinType != null ? skinType : "Skin type not found");
+
+                } else {
+                    // Handle case where user data doesn't exist
+                    usernameTextView.setText("User not found");
+                    skintypeTextView.setText("Skin type not found");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors
+                usernameTextView.setText("Error fetching data");
+                skintypeTextView.setText("Error fetching data");
+
+            }
+        });
+    }
+
+
+
+
 
     @Override
     public void onMapReady(GoogleMap map) {
@@ -276,7 +344,7 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
                 switch (skintype.toLowerCase(Locale.ROOT)) {
                     case "oily":
                         sunscreenLink = "https://www.watsons.com.my/blog/skincare-tips/best-sunscreens-for-oily-skin";
-                        healthTipsLink = "https://www.healthline.com/health/beauty-skin-care/oily-skin-routine";
+                        healthTipsLink = "https://www.aad.org/public/everyday-care/skin-care-basics/dry/oily-skin";
                         break;
                     case "dry":
                         sunscreenLink = "https://www.allure.com/story/sunscreens-for-dry-skin";
@@ -284,11 +352,11 @@ public class userFragment extends Fragment implements OnMapReadyCallback {
                         break;
                     case "normal":
                         sunscreenLink = "https://www.hommesmalaysia.com/grooming/dermatologist-recommended-facial-sunscreens";
-                        healthTipsLink = "https://www.webmd.com/beauty/normal-skin";
+                        healthTipsLink = "https://www.mayoclinic.org/healthy-lifestyle/adult-health/in-depth/skin-care/art-20048237";
                         break;
                     case "sensitive":
                         sunscreenLink = "https://www.glamour.com/gallery/best-sunscreen-for-sensitive-skin";
-                        healthTipsLink = "https://www.healthline.com/health/beauty-skin-care/sensitive-skin-care-routine";
+                        healthTipsLink = "https://www.simpleskincare.com/us/en/skincare-tips/7-tips-to-help-soothe-sensitive-skin.html";
                         break;
                     default:
                         sunscreenLink = "https://www.general-skincare.com";
