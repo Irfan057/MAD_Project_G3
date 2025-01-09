@@ -107,6 +107,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+    <ImageButton
+        android:id="@+id/RefreshBtnUser"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="refresh button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022"
+        app:srcCompat="@drawable/baseline_refresh_userpage" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="411dp"
@@ -157,7 +171,7 @@
                     android:layout_height="65dp"
                     android:layout_gravity="right"
                     android:layout_marginLeft="300dp"
-                    android:layout_marginTop="38dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginRight="30dp"
                     android:indeterminateDrawable="@drawable/forprogressbar"
                     android:outlineAmbientShadowColor="@color/gray" />
@@ -196,11 +210,12 @@
                     android:id="@+id/skintype"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="300dp"
-                    android:layout_marginTop="38dp"
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="40dp"
                     android:fontFamily="@font/raleway_medium"
                     android:text="Dry"
-                    android:textSize="25dp" />
+                    android:textStyle="bold"
+                    android:textSize="20dp" />
 
 
             </androidx.cardview.widget.CardView>
@@ -235,7 +250,7 @@
                     android:id="@+id/tv_sunscreen_reco_link"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:layout_marginLeft="300dp"
+                    android:layout_marginLeft="298dp"
                     android:layout_marginTop="35dp"
                     android:fontFamily="@font/raleway_medium"
                     android:text="Link"
