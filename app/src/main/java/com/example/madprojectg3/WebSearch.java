@@ -25,6 +25,9 @@ public class WebSearch extends AppCompatActivity {
             return insets;
         });
         Intent intent = getIntent();
+        String userId = intent.getStringExtra("userId");
+        String username = intent.getStringExtra("username");
+        String skintype = intent.getStringExtra("skintype");
         SearchURL = intent.getStringExtra("SearchURL");
         WebView webView = findViewById(R.id.WVSearch);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -34,6 +37,9 @@ public class WebSearch extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentback = new Intent(WebSearch.this, MainActivity.class);
+                intentback.putExtra("userId",userId);
+                intentback.putExtra("username",username);
+                intentback.putExtra("skintype",skintype);
                 intentback.putExtra("transition_id",1);
                 startActivity(intentback);
             }

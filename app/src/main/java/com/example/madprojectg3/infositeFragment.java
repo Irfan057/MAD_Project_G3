@@ -77,6 +77,7 @@ public class infositeFragment extends Fragment {
     }
 
     public void onViewCreated(View view,@Nullable Bundle savedInstanceState){
+        clearArticleList();
         fillArticleList();
         context = view.getContext();
         recyclerView = view.findViewById(R.id.RVArticle);
@@ -84,7 +85,7 @@ public class infositeFragment extends Fragment {
         layoutManager = new LinearLayoutManager(context);
 
         recyclerView.setLayoutManager(layoutManager);
-        rAdapter = new RecycleViewAdapter(ArticleList,context);
+        rAdapter = new RecycleViewAdapter(ArticleList,getActivity().getIntent(),context);
         recyclerView.setAdapter(rAdapter);
         searchView = view.findViewById(R.id.searchView);
         searchView.clearFocus();
@@ -100,6 +101,9 @@ public class infositeFragment extends Fragment {
                 return true;
             }
         });
+    }
+    private void clearArticleList(){
+        ArticleList.clear();
     }
     private void fillArticleList() {
         Article at1 = new Article(1, "Malay Mail:\nBarnacle blues: Spain’s Christmas delicacy at risk as climate change and poaching take a toll",
@@ -144,7 +148,7 @@ public class infositeFragment extends Fragment {
         Article at14 = new Article(14,"World Meteorological Organization WMO\nUnited in Science: Reboot climate action",
                 "https://wmo.int/sites/default/files/styles/featured_image_x1_768x512/public/2024-09/UiS%20Press%20release%20cover.jpg?h=d1cb525d&itok=Uu8AKJ4N",
                 "https://wmo.int/news/media-centre/united-science-reboot-climate-action");
-        Article at15 = new Article(15, "UN Environment Programme:\n",
+        Article at15 = new Article(15, "UN Environment Programme:\nGOAL 13: Climate action",
                 "https://cdn.unenvironment.org/s3fs-public/inline-images/13_Climate%20ActionFINAL.jpg",
                 "https://www.unep.org/topics/sustainable-development-goals/why-do-sustainable-development-goals-matter/goal-13-climate");
         ArticleList.add(at1);
