@@ -58,7 +58,6 @@ public class edit_user_info extends Fragment {
     }
 
 
-
     private void updateUserDetails(String userId) {
         String updatedUsername = usernameField.getText().toString().trim();
         String updatedPhone = phoneField.getText().toString().trim();
@@ -80,7 +79,6 @@ public class edit_user_info extends Fragment {
             isUpdated = true;
         }
 
-
         // Update phone if it's not empty
         if (!TextUtils.isEmpty(updatedPhone)) {
             userRef.child("phone").setValue(updatedPhone);
@@ -99,7 +97,9 @@ public class edit_user_info extends Fragment {
                 userRef.child("password").setValue(updatedPassword);
                 isUpdated = true;
             } else {
-                Toast.makeText(getContext(), "Passwords do not match", Toast.LENGTH_SHORT).show();
+                // Set error on confirmPasswordField
+                confirmPasswordField.setError("Password does not match");
+                confirmPasswordField.requestFocus();
                 return;
             }
         }
@@ -111,5 +111,4 @@ public class edit_user_info extends Fragment {
             Toast.makeText(getContext(), "No changes made to the details", Toast.LENGTH_SHORT).show();
         }
     }
-
 }
